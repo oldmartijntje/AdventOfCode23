@@ -15,7 +15,7 @@ rename = {
     "nine": 9
 }
 
-f = open("input.txt", "r")
+f = open("Day1/input.txt", "r")
 data = f.read().splitlines()
 print(data)
 
