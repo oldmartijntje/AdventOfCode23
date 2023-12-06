@@ -1,16 +1,15 @@
-f = open("Day2/testInput2.txt", "r")
-# f = open("Day2/input2.txt", "r")
-maximum = {
-    "red": 12,
-    "green": 13,
-    "blue": 14
-} 
-possible = 0
+# f = open("Day2/testInput2.txt", "r")
+f = open("Day2/input2.txt", "r")
+listOfSum = []
 i = 0
 data = f.read().splitlines()
 for line in data:
+    minimum = {
+        "red": 0,
+        "green": 0,
+        "blue": 0
+    }
     i+=1
-    thisGameIsPossible = True
     line = line.split(": ")
     lastNumber = -1
     skip = 0
@@ -23,16 +22,17 @@ for line in data:
                 skip = len(splitted[0]) -1
                 lastNumber = int(splitted[0])
         else:
-            for key in maximum:
+            for key in minimum:
                 if line[1].startswith(key):
-            
-                    if lastNumber > maximum[key]:
-                        thisGameIsPossible = False
+                    if lastNumber > minimum[key]:
+                        minimum[key] = lastNumber
         line[1] = line[1][1:]
-    if thisGameIsPossible:
-        print(f"Game {i} is possible")
-        possible += i
-
-print(possible)
+    sumOfMinimum = minimum["red"] * minimum["green"] * minimum["blue"]
+    listOfSum.append(sumOfMinimum)
+    
+total = 0
+for item in listOfSum:
+    total += item
+print(total)
 
     
